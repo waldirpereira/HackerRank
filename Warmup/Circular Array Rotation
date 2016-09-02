@@ -2,22 +2,25 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 class Solution {
-
     static void Main(String[] args) {
-      string[] tokens_n = Console.ReadLine().Split(' ');
-      int n = Convert.ToInt32(tokens_n[0]);
-      int k = Convert.ToInt32(tokens_n[1]);
-      string[] c_temp = Console.ReadLine().Split(' ');
-      int[] c = Array.ConvertAll(c_temp,Int32.Parse);
-
-      var e = 100;
+     /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution */
+      var arrFirstLine = Array.ConvertAll(Console.ReadLine().Split(' '), Convert.ToInt32);
+      var n = arrFirstLine[0];
+      var k = arrFirstLine[1];
+      var q = arrFirstLine[2];
       
-      for (var i = 0; i < ((int)(n/k)); i++){
-        e -= (1 + c[i*k]*2);
+      var arr = Array.ConvertAll(Console.ReadLine().Split(' '), Convert.ToInt32);
+      var queries = new int[q];
+      for(var i = 0; i < q; i++)
+        queries[i] = Convert.ToInt32(Console.ReadLine());
+      
+      var newArr = new int[n];
+      for (var i = 0; i < n; i++) {
+        newArr[(i+k)%n] = arr[i];
       }
       
-      Console.Write(e);
+      for(var i = 0; i < q; i++) 
+        Console.WriteLine(newArr[queries[i]]);
     }
 }
